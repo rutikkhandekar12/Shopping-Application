@@ -140,21 +140,37 @@ document.getElementById("search").addEventListener("input", searchProducts);
 
 //filter products
 
-  function filterProduct(value){
+// function filterProduct(value) {
+//   const buttons = document.querySelectorAll('.other-tag');
+//   console.log('val',value)
+//   buttons.forEach((btn) => {
+//       if (value.toLowerCase() === btn.textContent.toLowerCase()) {
+//         console.log('in')
+//           btn.classList.add('active');
+//       } else {
+//         btn.classList.remove('active'); // corrected here
+//       }
+//   });
 
-     const button = document.querySelectorAll('.other-tag')
+//   const productTitles = document.querySelectorAll(".shopping-cards");
+//   console.log("api data : ",productTitles )
 
-     button.forEach((btn)=>{
-      if( value.toLowerCase() == btn.textContent.toLowerCase() ){
-           btn.classList.add('active');
-     }
-      else{
-        btn.classList.remove('avtive');
-      }
-     })
+   
+//   productTitles.forEach((product) => {
+//     const title = product.textContent.toLowerCase();
+
     
-  }
+//   if(value.toLowerCase() === title.toLowerCase()){
+//     product.style.display = "block"; 
+//   }
+//   else{
+//     product.style.display = "none";
+//   }
+// });
+// }
 
-  window.onload = function(){
-    filterProduct('all')
-  }
+
+// window.onload = function () {
+//   filterProduct('All'); // Corrected to 'All'
+// }
+

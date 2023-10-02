@@ -200,6 +200,7 @@ form input{
     padding-left: 2.5rem;
     font-size: 1rem;
     font-weight: 400;
+    margin-bottom: 2rem;
   
 }
 
@@ -215,6 +216,9 @@ form input{
     font-size: 1.4rem;
     margin-bottom: 1rem;
 }
+
+
+
 
 /* ---------------------------shopping-cards--------------------------------------------------------------------------------- */
 /* 
@@ -379,9 +383,10 @@ form input{
 --------------------------------------active--------------------------------------------------------- */
 
 .active {
-    background-color: blue;
-    color: white;
- }
+    background-color: rgb(15, 15, 23) !important;
+    color: white !important;
+}
+
   
  .hide{
     display: node;
@@ -460,4 +465,81 @@ form input{
     background: burlywood;
     padding: 0rem;
     padding-bottom: 0.2rem;
+}
+
+
+
+/* -------------------------------------------Responsive------------------------------------------------- */
+
+
+@media screen and (max-width: 480px) {
+    .main-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-container img {
+        width: 100% !important;
+        margin-top: 6rem !important; 
+        height: auto !important; 
+        margin-left: 0rem !important;
+    }
+    
+    .from-info form input {
+        width: 78%;
+    }
+
+    #container1 nav p{
+        display: none;
+    }
+
+    #login-container nav p{
+        display: none;
+    }
+
+    .main-container-shop {
+        margin-left: 3rem !important;
+    }
+
+    .serach input {
+        width: 68.9rem !important;
+    }
+
+    nav {
+        justify-content: center !important;
+    }
+    
+    #container2 nav p{
+        display: none;
+    }
+
+    nav p{
+        display: none;
+    }
+
+   
+}
+
+
+@media screen and (max-width: 780px){
+    
+    .from-info form input {
+        width: 87% !important;
+    }
+
+    .main-container-shop {
+        margin-left: 2.5rem !important;
+        
+    }
+
+    .serach input{
+        width: 71.9rem !important;
+    }
+
+    .main-container img {
+        width: 100% !important;
+        margin-top: 6.6rem !important;
+        height: 25em !important;
+        margin-left: 0px !important;
+    }
 }

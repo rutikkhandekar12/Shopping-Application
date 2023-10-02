@@ -1,65 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Profile</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
     <nav>
-        <p>MeShop.</p>
-        <ul class="ul-items">
-            <li class="items" ><a href="">Home</a></li>
-            <li class="items" ><a href="./login.html">Login</a></li>
-            <li class="items"><a href="./signup.html">Signup</a></li>
-            <li class="items"><a href="./profile.html">Profile</a></li>
-        </ul>
+      <p>MeShop.</p>
+      <ul class="ul-items">
+        <li class="items"><a href="./index.html">Home</a></li>
+        <li class="items"><a href="./shop.html">Shop</a></li>
+        <li class="items"><a href="./login.html">Login</a></li>
+        <li class="items"><a href="./signup.html">Signup</a></li>
+        <li class="items"><a href="">Profile</a></li>
+      </ul>
     </nav>
     <div class="profile-container">
-
-        <div class="profile-header">
-            <h1>My Profile</h1>
+      <div class="profile-header">
+        <h1>My Profile</h1>
+      </div>
+      <div class="profile-content" id="profile">
+        <div class="profile-avatar">
+          <img
+            src="./img/handsome-man-with-glasses.jpg"
+            alt="User Avatar"
+            class="avatar-image"
+          />
         </div>
-        <div class="profile-content" id="profile">
-            <div class="profile-avatar">
-                <img
-                    src="./img/handsome-man-with-glasses.jpg"
-                    alt="User Avatar"
-                    class="avatar-image"
-                />
-            </div>
-            <div class="profile-details">
-                <h2 id="user-name">User Name</h2>
-                <p id="user-email">Email: </p>
-                <p>Location: Akola, Maharashtra</p>
-                <button id="Logout" onclick="handleLogout()">Logout</button>
-            </div>
+        <div class="profile-details">
+          <h2 id="user-name">User Name</h2>
+          <p id="user-email">Email:</p>
+          <p>Location: Akola, Maharashtra</p>
+          <button id="Logout" onclick="handleLogout()">Logout</button>
         </div>
+      </div>
     </div>
 
     <script>
-        var users = JSON.parse(localStorage.getItem('users')) || [];
-        console.log("user", users);
+      var users = JSON.parse(localStorage.getItem("users")) || [];
+      console.log("users", users);
 
+      var userEmailElement = document.getElementById("user-email");
+      var userNameElement = document.getElementById("user-name");
+      var logoutButton = document.getElementById("Logout");
 
-        // Update the user's email in the HTML
-        var userEmailElement = document.getElementById('user-email');
-        var userName = document.getElementById('user-name');
-        let logout = document.getElementById('Logout');
+      function handleLogout() {
+        userEmailElement.textContent = `Email: undefined`;
+        userNameElement.textContent = `undefined`;
+        window.location.href = "./index.html"; // Redirect to a logout page or login page
+      }
 
-        function handleLogout() {
-            localStorage.clear();
-            window.location.href = './index.html'; // Redirect to a logout page or login page
-        }
+      if (users.length > 0) {
+        users.forEach((user) => {
+          if (localStorage.getItem("email") === `${user.email}`) {
+            // var firstUser = users[users.length - 1];
 
-        if (userEmailElement) {
-            userEmailElement.textContent = `Email: ${users.email}`;
-        }
-        if(userName){
-            userName.textContent = `${users.name}`;
-        }
+            if (userEmailElement) {
+              userEmailElement.textContent = `Email: ${user.email}`;
+            }
+            if (userNameElement) {
+              userNameElement.textContent = `${user.name}`;
+            }
+          }
+        });
+      }
     </script>
-</body>
+  </body>
 </html>

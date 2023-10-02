@@ -10,61 +10,87 @@ function goToLogin(){
   document.getElementById('container1').style.display = 'none';
   window.location.href = 'login.html';
 }
-function handleSignup(){
-  
+
+function handleSignup() {
   let name = document.getElementById('name').value;
   let Lname = document.getElementById('Lname').value;
   let email = document.getElementById('email').value;
   let password1 = document.getElementById('password1').value;
   let password2 = document.getElementById('password2').value;
 
-  if(password1 !== password2){
-    document.getElementById('alert').innerHTML = "Passwords are not matching";
+  // Check if passwords match
+  if (password1 !== password2) {
+    document.getElementById('alert').innerHTML = "Passwords do not match.";
     return;
   }
 
-  //checking for excisting user
+  
   let users = JSON.parse(localStorage.getItem('users')) || [];
-  let existingUser = users.email === email ? true : false;
-  if(existingUser){
-    document.getElementById('alert').innerHTML = "Email already used. please try again with new Email";
+
+  if (!Array.isArray(users)) {
+    users = [];
+  }
+
+  let existingUser = users.find(user => user.email === email);
+
+  if (existingUser) {
+    document.getElementById('alert').innerHTML = "Email already in use. Please try again with a new email.";
     return;
   }
 
   let newUser = {
-    name,
-    Lname,
-    email,
-    password1,
-  }
+    name: name,
+    Lname: Lname,
+    email: email,
+    password1: password1,
+  };
 
-  let i = 0;
-  users[i] = newUser;
-  localStorage.setItem('users',JSON.stringify(newUser));
+  // Add the new user to the users array
+  users.push(newUser);
 
-  window.location.href = "shop.html";
+  // Store the updated users array in local storage
+  localStorage.setItem('users', JSON.stringify(users));
+
+  // Redirect to the "login.html" page or any other desired page
+  window.location.href = "./login.html";
 }
+
 
 
 
 // ----------------------------------login------------------------------
 
-function login(){
-
+function login() {
   let email = document.getElementById('email-login').value;
   let password = document.getElementById('password-login').value;
 
-  let users = JSON.parse(localStorage.getItem('users')) || [];
-  let existingUser = users.email === email && users.password1 === password? true: false;
+  localStorage.setItem("email",email)
+  
 
-  if(existingUser){
-    window.location.href = "shop.html";
+  let users = JSON.parse(localStorage.getItem('users')) || [];   // getting users array from local storage
+
+  if (!Array.isArray(users)) {
+    // If users is not an array, handle the error or initialize it as an empty array
+    users = [];
   }
-  else{
+
+  let existingUser = false; 
+
+  users.forEach(user => {
+    if (user.email === email && user.password1 === password) {
+      existingUser = true;
+      return;
+    }
+  });
+
+  if (existingUser) {
+    window.location.href = "shop.html";
+  } else {
     document.getElementById('alert').innerHTML = "Invalid password and username";
     return;
   }
 }
+
 
 
 // ---------------------------------profile update-----------------------------------------------------------
